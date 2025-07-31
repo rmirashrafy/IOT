@@ -1,0 +1,30 @@
+#include <Arduino.h>
+#include <ESP32Servo.h>
+
+Servo myServo;
+
+const int servoPin = 25; // تغییر بده بر اساس پین واقعی وصل‌شده به TTL
+
+void setup() {
+  Serial.begin(115200);
+  myServo.setPeriodHertz(50);    // سیگنال PWM برای سروو: 50Hz
+  myServo.attach(servoPin, 1000, 2000); // min=1000µs, max=2000µs
+}
+
+void loop() {
+  // سروو به جلو بچرخد
+  myServo.writeMicroseconds(2000); // سرعت بالا به جلو
+  delay(2000);
+
+  // توقف
+  myServo.writeMicroseconds(1500); // توقف (برای بیشتر سرووها)
+  delay(2000);
+
+  // سروو به عقب بچرخد
+  myServo.writeMicroseconds(1000); // سرعت بالا به عقب
+  delay(2000);
+
+  // توقف
+  myServo.writeMicroseconds(1500); // توقف
+  delay(2000);
+}
