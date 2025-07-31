@@ -1,0 +1,29 @@
+#include <ESP32Servo.h>
+
+Servo myservo;
+const int servoPin = 5;
+const int buttonPin = 14;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(buttonPin, INPUT_PULLUP);
+  myservo.attach(servoPin);
+  myservo.write(90);
+  Serial.println("Setup done");
+}
+
+void loop() {
+  int buttonState = digitalRead(buttonPin);
+  Serial.print("Button state: ");
+  Serial.println(buttonState);
+
+  if (buttonState == LOW) {
+    myservo.write(180);
+    Serial.println("Button pressed - Servo rotating");
+  } else {
+    myservo.write(90);
+    Serial.println("Button released - Servo stopped");
+  }
+  delay(200);
+}
+//servo does not work here, just the button
