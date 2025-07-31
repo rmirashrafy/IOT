@@ -1,4 +1,3 @@
-//sensor , servo
 #include <HCSR04.h>
 #include <ESP32Servo.h>
 
